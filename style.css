@@ -1,5 +1,37 @@
 h1 {
     color: brown;
     font-size: 30px;
+    height: 5rem;
+    line-height: 5 rem;
+}
+* {
+    margin: 0;
+    padding: 0;
     text-align: center;
+}
+.choice{
+    height: 200px;
+    width: 200px;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.choice:hover {
+    cursor: pointer;
+    background-color: black;
+}
+img {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 10%;
+}
+.choices{
+    background-color: brown;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 5rem;
 }
