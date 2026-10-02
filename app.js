@@ -2,6 +2,7 @@ let userScore = 0;
 let compScore = 0;
 
 const choices = document.querySelectorAll(".choice");
+const msg = document.querySelector("#msg");
 
 const genCompChoice = () => {
     const options = ["rock","paper","scissors"];
@@ -11,14 +12,27 @@ const genCompChoice = () => {
 
 const drawGame = () => {
     console.log("The game was DRAW!");
+    msg.innerText = "The game was DRAW! Play Again.";
+
 };
 
-const showWinner = (userWin) => {
+const showWinner = (userWin,userChoice,compChoice) => {
     if (userWin === true){
         console.log ("YOU WIN!");
+        msg.innerText = `YOU WIN! Your ${userChoice} beats ${compChoice}`;
+        
+        // 🎉 Confetti!
+         confetti({
+            particleCount: 150,
+            spread: 80,
+            origin: { y: 0.6 },
+            //colors: ['#FF7E7E', '#FFA259', '#FFCB56', '#FFEDB9']
+        });
     }
     else {
         console.log ("You LOSE");
+        msg.innerText = `You Lose! The ${compChoice} beats ${userChoice}`;
+
     }
 };
 
@@ -34,19 +48,19 @@ const playGame = (userChoice) => {
         }
         else {
             let userWin = true;
-            if( userChoice === "rock"){
+            if( userChoice === "Rock"){
             //scissor,paper
-            userWin = compChoice === "paper" ? false : true;
+            userWin = compChoice === "Paper" ? false : true;
             }
-             else if (userChoice === "paper"){
+             else if (userChoice === "Paper"){
              //rock,scissor
-             userWin = compChoice === "scissor" ? false : true;
+             userWin = compChoice === "Scissors" ? false : true;
              }
-              else if (userChoice === "scissor"){
+              else if (userChoice === "Scissors"){
              //rock,paper
-             userWin = compChoice === "rock" ? false : true;
+             userWin = compChoice === "Rock" ? false : true;
              }
-             showWinner (userWin);
+             showWinner (userWin,userChoice,compChoice);
         };
 
 };
