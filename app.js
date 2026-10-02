@@ -3,9 +3,12 @@ let compScore = 0;
 
 const choices = document.querySelectorAll(".choice");
 const msg = document.querySelector("#msg");
+const userScorePara = document.querySelector("#user-score");
+const compScorePara = document.querySelector("#comp-score");
+const resetBtn = document.querySelector("#reset-btn");
 
 const genCompChoice = () => {
-    const options = ["rock","paper","scissors"];
+    const options = ["Rock","Paper","Scissors"];
     const randIdx = Math.floor(Math.random() * 3);
     return options[randIdx];
 };
@@ -18,18 +21,23 @@ const drawGame = () => {
 
 const showWinner = (userWin,userChoice,compChoice) => {
     if (userWin === true){
+        userScore++;
+        userScorePara.innerText = userScore;
         console.log ("YOU WIN!");
         msg.innerText = `YOU WIN! Your ${userChoice} beats ${compChoice}`;
         
         // 🎉 Confetti!
          confetti({
-            particleCount: 150,
-            spread: 80,
+            particleCount: 70,
+            spread: 70,
             origin: { y: 0.6 },
-            //colors: ['#FF7E7E', '#FFA259', '#FFCB56', '#FFEDB9']
+            startVelocity: 35,
+            colors: ['#FF7E7E', '#FFA259', '#FFCB56', '#FFEDB9']
         });
     }
     else {
+        compScore++;
+        compScorePara.innerText = compScore;
         console.log ("You LOSE");
         msg.innerText = `You Lose! The ${compChoice} beats ${userChoice}`;
 
@@ -74,3 +82,15 @@ choices.forEach((choice) => {
 
     });
 });
+
+const resetGame = () => {
+    userScore = 0;
+    compScore = 0;
+
+    userScorePara.innerText = 0;
+    compScorePara.innerText = 0;
+
+    msg.innerText = "Play your move";
+};
+
+resetBtn.addEventListener("click", resetGame);
